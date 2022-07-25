@@ -1,3 +1,5 @@
+[![Go](https://github.com/francoarendholz/flunky/actions/workflows/go.yml/badge.svg)](https://github.com/francoarendholz/flunky/actions/workflows/go.yml)
+
 # flunky
 A command-line toolbox for Jenkins CI server.
 (And also a playground for me learning GO)
