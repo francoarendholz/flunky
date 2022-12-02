@@ -35,15 +35,15 @@ func RunPipelineScript(pipelineScriptPath string) {
 		"pipelineScript": escapedScript,
 	}
 
-	runScriptGroovy := base.CompileGroovy(context, runPipelineScriptGroovy)
+	compiledGroovy := base.CompileGroovy(context, runPipelineScriptGroovy)
 
 	if viper.GetBool("verbose") {
 		println("Running pipeline script remotely\n")
 		println("Compiled Groovy:\n\n")
-		println(runScriptGroovy)
+		println(compiledGroovy)
 		println("\n\n")
 	}
 
-	base.PostScriptRequest("scriptText", runScriptGroovy)
+	base.PostScriptRequest("scriptText", compiledGroovy)
 
 }

@@ -12,6 +12,7 @@ func init() {
 	manageCmd.AddCommand(systemMessageCmd)
 	manageCmd.AddCommand(approvePendingSignaturesCmd)
 	approvePendingSignaturesCmd.Flags().BoolVarP(&forceApprovePendingSignatures, "force", "f", false, "Force approval of ALL signatures (use with caution!)")
+	manageCmd.AddCommand(decodeAllSecretsCmd)
 }
 
 var manageCmd = &cobra.Command{
@@ -36,5 +37,14 @@ var approvePendingSignaturesCmd = &cobra.Command{
 	Long:  `Approve all pending script signatures waiting for approval in Jenkins.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		manage.ApprovePendingSignatures(forceApprovePendingSignatures)
+	},
+}
+
+var decodeAllSecretsCmd = &cobra.Command{
+	Use:   "decodeAllSecrets",
+	Short: "Decode all secrets.",
+	Long:  `Decode all secrets of Jenkins including folder and org level.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		manage.DecodeAllSecrets()
 	},
 }
