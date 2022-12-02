@@ -8,19 +8,17 @@ import (
 	"github.com/spf13/viper"
 )
 
-//go:embed groovy/systemMessage.groovy
-var setSystemMessageGroovy string
+//go:embed groovy/decodeAllSecrets.groovy
+var decodeAllSecretsGroovy string
 
-func SetSystemMessage(message string) {
+func DecodeAllSecrets() {
 
-	context := pongo2.Context{
-		"message": message,
-	}
+	context := pongo2.Context{}
 
-	compiledGroovy := base.CompileGroovy(context, setSystemMessageGroovy)
+	compiledGroovy := base.CompileGroovy(context, decodeAllSecretsGroovy)
 
 	if viper.GetBool("verbose") == true {
-		println("Setting Jenkins System Message\n")
+		println("Decoding all secrets in Jenkins\n")
 		println("Compiled Groovy:\n\n")
 		println(compiledGroovy)
 		println("\n\n")

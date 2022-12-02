@@ -13,7 +13,6 @@ var ApprovePendingSignaturesGroovy string
 
 func ApprovePendingSignatures(force bool) {
 
-	var approveSignaturesGroovy string
 	var context pongo2.Context
 
 	if force == true {
@@ -26,15 +25,15 @@ func ApprovePendingSignatures(force bool) {
 		}
 	}
 
-	approveSignaturesGroovy = base.CompileGroovy(context, ApprovePendingSignaturesGroovy)
+	compiledGroovy := base.CompileGroovy(context, ApprovePendingSignaturesGroovy)
 
 	if viper.GetBool("verbose") == true {
 		println("Approving all pending script signatures.\n")
 		println("Compiled Groovy:\n\n")
-		println(approveSignaturesGroovy)
+		println(compiledGroovy)
 		println("\n\n")
 	}
 
-	base.PostScriptRequest("scriptText", approveSignaturesGroovy)
+	base.PostScriptRequest("scriptText", compiledGroovy)
 
 }
