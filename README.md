@@ -1,4 +1,4 @@
-[![Go](https://github.com/francoarendholz/flunky/actions/workflows/go.yml/badge.svg)](https://github.com/francoarendholz/flunky/actions/workflows/go.yml)
+[![Go](https://github.com/francoarendholz/flunky/actions/workflows/go.yml/badge.svg)](https://github.com/francoarendholz/flunky/actions/workflows/go.yml)[![CodeQL](https://github.com/francoarendholz/flunky/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/francoarendholz/flunky/actions/workflows/codeql.yml)
 
 # flunky
 A command-line toolbox for Jenkins CI server.
