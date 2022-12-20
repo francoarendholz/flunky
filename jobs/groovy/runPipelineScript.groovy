@@ -22,6 +22,7 @@ polishedScript = script.replaceAll("\\'","'")
 
 // TODO: Some Error handling, currently bad scripts are just timing out.
 // Pre-Approve the pipeline script
+println("Pre-Approving pipeline script...")
 ScriptApproval.get().preapprove(polishedScript, GroovyLanguage.get())
 
 // Create a temporary "Workflow Job" project to run the pipeline script in.

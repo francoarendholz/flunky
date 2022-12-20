@@ -2,13 +2,13 @@ package base
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 
 	"github.com/flosch/pongo2/v6"
 )
 
 func ReturnStringFromFile(filename string) string {
-	bytes, err := ioutil.ReadFile(filename)
+	bytes, err := os.ReadFile(filename)
 	if err != nil {
 		fmt.Print(err)
 	}

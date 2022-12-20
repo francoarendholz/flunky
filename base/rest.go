@@ -24,10 +24,9 @@ func PostScriptRequest(apiPath string, data string) {
 
 	req, err := http.NewRequest("POST", apiURL+apiPath, body)
 	if err != nil {
-
+		println(err)
 	}
-	req.Header.Add("content-type", "text/plain")
-	req.Header.Add("user-agent", "Flunky Jenkins Toolkit Version: "+FlunkyVersion+"-"+FlunkyCommit)
+	req.Header.Add("User-Agent", "Flunky Jenkins Toolkit Version: "+FlunkyVersion+"-"+FlunkyCommit)
 	req.SetBasicAuth(apiUser, apiKey)
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 

@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"os"
+
 	flunky "github.com/francoarendholz/flunky/base"
 	"github.com/spf13/cobra"
 )
@@ -13,6 +15,6 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print the version of flunky",
 	Run: func(cmd *cobra.Command, args []string) {
-		flunky.PrintVersion()
+		flunky.PrintVersion(os.Stdout)
 	},
 }
