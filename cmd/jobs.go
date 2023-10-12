@@ -9,6 +9,7 @@ func init() {
 	rootCmd.AddCommand(jobsCmd)
 	jobsCmd.AddCommand(runPipelineScript)
 	jobsCmd.AddCommand(getJobConfigXml)
+	jobsCmd.AddCommand(convertJobParams)
 }
 
 var jobsCmd = &cobra.Command{
@@ -34,5 +35,15 @@ var getJobConfigXml = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		jobs.GetJobConfigXml(args[0])
+	},
+}
+
+var convertJobParams = &cobra.Command{
+	Use:   "convertJobParams",
+	Short: "Convert job parameters to a pipeline script.",
+	Long:  `Convert job parameters to a pipeline script and print it to stdout.`,
+	Args:  cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		jobs.ConvertJobParams(args[0])
 	},
 }

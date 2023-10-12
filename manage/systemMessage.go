@@ -1,15 +1,10 @@
 package manage
 
 import (
-	_ "embed"
-
 	"github.com/flosch/pongo2/v6"
 	"github.com/francoarendholz/flunky/base"
 	"github.com/spf13/viper"
 )
-
-//go:embed groovy/systemMessage.groovy
-var setSystemMessageGroovy string
 
 func SetSystemMessage(message string) {
 
@@ -26,6 +21,12 @@ func SetSystemMessage(message string) {
 		println("\n\n")
 	}
 
-	base.PostScriptRequest("scriptText", compiledGroovy)
+	result, err := base.PostScriptRequest("scriptText", compiledGroovy)
+
+	if err != nil {
+		println(err)
+	}
+
+	println(result)
 
 }

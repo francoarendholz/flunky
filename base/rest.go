@@ -12,7 +12,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func PostScriptRequest(apiPath string, data string) {
+func PostScriptRequest(apiPath string, data string) (string, error) {
 
 	apiKey := viper.GetString("jenkins_api_key")
 	apiUser := viper.GetString("jenkins_api_user")
@@ -43,7 +43,7 @@ func PostScriptRequest(apiPath string, data string) {
 			log.Fatal(err)
 		}
 		bodyString := string(bodyBytes)
-		println(bodyString)
+		return bodyString, nil
 	} else {
 		println("Response was not 200 OK - printing debug information...\n")
 		respDump, err := httputil.DumpResponse(resp, true)
@@ -52,5 +52,7 @@ func PostScriptRequest(apiPath string, data string) {
 		}
 
 		fmt.Printf("RESPONSE:\n%s", string(respDump))
+
+		return string(respDump), err
 	}
 }

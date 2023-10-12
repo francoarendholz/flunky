@@ -1,15 +1,10 @@
 package manage
 
 import (
-	_ "embed"
-
 	"github.com/flosch/pongo2/v6"
 	"github.com/francoarendholz/flunky/base"
 	"github.com/spf13/viper"
 )
-
-//go:embed groovy/approvePendingSignatures.groovy
-var ApprovePendingSignaturesGroovy string
 
 func ApprovePendingSignatures(force bool) {
 
@@ -34,6 +29,12 @@ func ApprovePendingSignatures(force bool) {
 		println("\n\n")
 	}
 
-	base.PostScriptRequest("scriptText", compiledGroovy)
+	result, err := base.PostScriptRequest("scriptText", compiledGroovy)
+
+	if err != nil {
+		println(err)
+	}
+
+	println(result)
 
 }
