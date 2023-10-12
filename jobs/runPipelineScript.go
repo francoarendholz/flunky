@@ -1,7 +1,6 @@
 package jobs
 
 import (
-	_ "embed"
 	"fmt"
 	"os"
 	"strings"
@@ -11,9 +10,6 @@ import (
 	"github.com/francoarendholz/flunky/base"
 	"github.com/spf13/viper"
 )
-
-//go:embed groovy/runPipelineScript.groovy
-var runPipelineScriptGroovy string
 
 func RunPipelineScript(pipelineScriptPath string) {
 
@@ -44,6 +40,12 @@ func RunPipelineScript(pipelineScriptPath string) {
 		println("\n\n")
 	}
 
-	base.PostScriptRequest("scriptText", compiledGroovy)
+	result, err := base.PostScriptRequest("scriptText", compiledGroovy)
+
+	if err != nil {
+		println(err)
+	}
+
+	println(result)
 
 }

@@ -1,0 +1,15 @@
+            {% autoescape off %}[
+                $class: 'com.syhuang.hudson.plugins.listgitbranchesparameter.ListGitBranchesParameterDefinition',
+                name: '{{ name }}',
+                description: '{{ description }}',
+                branchFilter: '{{ branchFilter }}',
+                selectedValue: '{{ selectedValue }}',
+                tagFilter: '{{ tagFilter }}',
+                sortMode: '{{ sortMode }}',
+                remoteURL: '{{ remoteURL }}',
+                quickFilterEnabled: {{ quickFilterEnabled }},
+                listSize: '{{ listSize }}',
+                credentialsId: '{{ credentialsId }}',
+                defaultValue: '{{ defaultValue }}',
+                type: '{{ type }}',
+            ]{% endautoescape %}

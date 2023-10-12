@@ -8,9 +8,6 @@ import (
 	"github.com/spf13/viper"
 )
 
-//go:embed groovy/getJobConfigXml.groovy
-var getJobConfigXml string
-
 func GetJobConfigXml(jobName string) {
 
 	context := pongo2.Context{
@@ -26,6 +23,12 @@ func GetJobConfigXml(jobName string) {
 		println("\n\n")
 	}
 
-	base.PostScriptRequest("scriptText", compiledGroovy)
+	result, err := base.PostScriptRequest("scriptText", compiledGroovy)
+
+	if err != nil {
+		println(err)
+	}
+
+	println(result)
 
 }
