@@ -8,6 +8,7 @@ import (
 func init() {
 	rootCmd.AddCommand(jobsCmd)
 	jobsCmd.AddCommand(runPipelineScript)
+	jobsCmd.AddCommand(getJobConfigXml)
 }
 
 var jobsCmd = &cobra.Command{
@@ -23,5 +24,15 @@ var runPipelineScript = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		jobs.RunPipelineScript(args[0])
+	},
+}
+
+var getJobConfigXml = &cobra.Command{
+	Use:   "getJobConfigXml",
+	Short: "Get the config.xml of a job.",
+	Long:  `Get the config.xml of a job and print it to stdout.`,
+	Args:  cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		jobs.GetJobConfigXml(args[0])
 	},
 }
