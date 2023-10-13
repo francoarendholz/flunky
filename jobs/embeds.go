@@ -10,6 +10,9 @@ var getJobConfigXml string
 //go:embed groovy/runPipelineScript.groovy
 var runPipelineScriptGroovy string
 
+//go:embed groovy/getJobsTree.groovy
+var getJobsTree string
+
 //go:embed templates/UnoChoiceParameter.groovy
 var unoChoiceParameter string
 

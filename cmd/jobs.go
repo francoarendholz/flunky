@@ -10,6 +10,7 @@ func init() {
 	jobsCmd.AddCommand(runPipelineScript)
 	jobsCmd.AddCommand(getJobConfigXml)
 	jobsCmd.AddCommand(convertJobParams)
+	jobsCmd.AddCommand(getJobsTree)
 }
 
 var jobsCmd = &cobra.Command{
@@ -35,6 +36,15 @@ var getJobConfigXml = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		jobs.GetJobConfigXml(args[0])
+	},
+}
+
+var getJobsTree = &cobra.Command{
+	Use:   "getJobsTree",
+	Short: "Get a tree view of all jobs.",
+	Long:  `Get a tree of all jobs and print it to stdout.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		jobs.GetJobsTree()
 	},
 }
 
