@@ -33,6 +33,21 @@ type UnoCascadeChoiceParameter struct {
 	FilterLength         int           `xml:"filterLength"`
 }
 
+type UnoDynamicReferenceParameter struct {
+	XMLName              xml.Name      `xml:"org.biouno.unochoice.DynamicReferenceParameter"`
+	Name                 string        `xml:"name"`
+	Description          string        `xml:"description"`
+	RandomName           string        `xml:"randomName"`
+	VisibleItemCount     int           `xml:"visibleItemCount"`
+	Script               GroovyScript  `xml:"script"`
+	ProjectName          string        `xml:"projectName"`
+	ProjectFullName      string        `xml:"projectFullName"`
+	Parameters           LinkedHashMap `xml:"parameters"`
+	ReferencedParameters string        `xml:"referencedParameters"`
+	ChoiceType           string        `xml:"choiceType"`
+	OmitValueField       bool          `xml:"omitValueField"`
+}
+
 type GroovyScript struct {
 	XMLName              xml.Name             `xml:"script"`
 	SecureScript         SecureScript         `xml:"secureScript"`
@@ -90,4 +105,25 @@ type LinkedHashMap struct {
 type StringArray struct {
 	XMLName xml.Name `xml:"choices"`
 	Choices []string `xml:"a>string"`
+}
+
+type TextParameter struct {
+	XMLName      xml.Name `xml:"hudson.model.TextParameterDefinition"`
+	Name         string   `xml:"name"`
+	Description  string   `xml:"description"`
+	DefaultValue string   `xml:"defaultValue"`
+}
+
+type StringParameter struct {
+	XMLName      xml.Name `xml:"hudson.model.StringParameterDefinition"`
+	Name         string   `xml:"name"`
+	Description  string   `xml:"description"`
+	DefaultValue string   `xml:"defaultValue"`
+}
+
+type PasswordParameter struct {
+	XMLName      xml.Name `xml:"hudson.model.PasswordParameterDefinition"`
+	Name         string   `xml:"name"`
+	Description  string   `xml:"description"`
+	DefaultValue string   `xml:"defaultValue"`
 }

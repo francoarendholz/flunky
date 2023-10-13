@@ -58,6 +58,10 @@ func ConvertJobParams(jobName string) {
 			Type:         reflect.TypeOf(UnoCascadeChoiceParameter{}),
 		},
 		{
+			SearchString: "//properties/hudson.model.ParametersDefinitionProperty/*/org.biouno.unochoice.DynamicReferenceParameter",
+			Type:         reflect.TypeOf(UnoDynamicReferenceParameter{}),
+		},
+		{
 			SearchString: "//properties/hudson.model.ParametersDefinitionProperty/*/hudson.model.BooleanParameterDefinition",
 			Type:         reflect.TypeOf(BooleanParameter{}),
 		},
@@ -68,6 +72,18 @@ func ConvertJobParams(jobName string) {
 		{
 			SearchString: "//properties/hudson.model.ParametersDefinitionProperty/*/com.syhuang.hudson.plugins.listgitbranchesparameter.ListGitBranchesParameterDefinition",
 			Type:         reflect.TypeOf(ListGitBranchesParameter{}),
+		},
+		{
+			SearchString: "//properties/hudson.model.ParametersDefinitionProperty/*/hudson.model.TextParameterDefinition",
+			Type:         reflect.TypeOf(TextParameter{}),
+		},
+		{
+			SearchString: "//properties/hudson.model.ParametersDefinitionProperty/*/hudson.model.StringParameterDefinition",
+			Type:         reflect.TypeOf(StringParameter{}),
+		},
+		{
+			SearchString: "//properties/hudson.model.ParametersDefinitionProperty/*/hudson.model.PasswordParameterDefinition",
+			Type:         reflect.TypeOf(PasswordParameter{}),
 		},
 	}
 
@@ -144,6 +160,24 @@ properties([
 			compiledGroovy := base.CompileGroovy(context, unoCascadeChoiceParameter)
 			parameterOutput += compiledGroovy + ",\n"
 
+		// Active Choices Choice Parameter
+		case *UnoDynamicReferenceParameter:
+			context := pongo2.Context{
+				"name":                 p.Name,
+				"choiceType":           p.ChoiceType,
+				"description":          p.Description,
+				"scriptClass":          "GroovyScript",
+				"script":               p.Script.SecureScript.Script,
+				"scriptSandbox":        strings.ToLower(strconv.FormatBool(p.Script.SecureScript.Sandbox)),
+				"fallbackScript":       p.Script.SecureFallbackScript.Script,
+				"fallbackSandbox":      strings.ToLower(strconv.FormatBool(p.Script.SecureFallbackScript.Sandbox)),
+				"omitValueField":       strings.ToLower(strconv.FormatBool(p.OmitValueField)),
+				"referencedParameters": p.ReferencedParameters,
+			}
+
+			compiledGroovy := base.CompileGroovy(context, unoDynamicReferenceParameter)
+			parameterOutput += compiledGroovy + ",\n"
+
 		case *ListGitBranchesParameter:
 			context := pongo2.Context{
 				"name":               p.Name,
@@ -184,6 +218,37 @@ properties([
 
 			compiledGroovy := base.CompileGroovy(context, choiceParameter)
 			parameterOutput += compiledGroovy + ",\n"
+
+		case *TextParameter:
+			context := pongo2.Context{
+				"name":         p.Name,
+				"description":  p.Description,
+				"defaultValue": p.DefaultValue,
+			}
+
+			compiledGroovy := base.CompileGroovy(context, textParameter)
+			parameterOutput += compiledGroovy + ",\n"
+
+		case *StringParameter:
+			context := pongo2.Context{
+				"name":         p.Name,
+				"description":  p.Description,
+				"defaultValue": p.DefaultValue,
+			}
+
+			compiledGroovy := base.CompileGroovy(context, stringParameter)
+			parameterOutput += compiledGroovy + ",\n"
+
+		case *PasswordParameter:
+			context := pongo2.Context{
+				"name":         p.Name,
+				"description":  p.Description,
+				"defaultValue": p.DefaultValue,
+			}
+
+			compiledGroovy := base.CompileGroovy(context, passwordParameter)
+			parameterOutput += compiledGroovy + ",\n"
+
 		}
 	}
 

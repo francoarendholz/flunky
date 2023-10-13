@@ -16,6 +16,9 @@ var unoChoiceParameter string
 //go:embed templates/UnoCascadeChoiceParameter.groovy
 var unoCascadeChoiceParameter string
 
+//go:embed templates/UnoDynamicReferenceParameter.groovy
+var unoDynamicReferenceParameter string
+
 //go:embed templates/BooleanParameter.groovy
 var booleanParameter string
 
@@ -24,3 +27,12 @@ var choiceParameter string
 
 //go:embed templates/ListGitBranchesParameter.groovy
 var listGitBranchesParameter string
+
+//go:embed templates/TextParameter.groovy
+var textParameter string
+
+//go:embed templates/StringParameter.groovy
+var stringParameter string
+
+//go:embed templates/PasswordParameter.groovy
+var passwordParameter string
