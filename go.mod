@@ -3,7 +3,7 @@ module github.com/francoarendholz/flunky
 go 1.18
 
 require (
-	github.com/antchfx/xmlquery v1.4.0
+	github.com/antchfx/xmlquery v1.4.1
 	github.com/flosch/pongo2/v6 v6.0.0
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.18.2
@@ -11,7 +11,7 @@ require (
 )
 
 require (
-	github.com/antchfx/xpath v1.3.0 // indirect
+	github.com/antchfx/xpath v1.3.1 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
