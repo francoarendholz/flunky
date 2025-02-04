@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/antchfx/xmlquery v1.4.0
 	github.com/flosch/pongo2/v6 v6.0.0
-	github.com/spf13/cobra v1.8.0
+	github.com/spf13/cobra v1.8.1
 	github.com/spf13/viper v1.18.2
 	github.com/stretchr/testify v1.9.0
 )
